@@ -65,7 +65,7 @@ while ($sw.elapsed -lt $timeout)
     $removeFile = Remove-Item "$fileLog"
 
     # Title
-    PrintMsg -msg "$($lang.Stop) $timeWait $($lang.Min)"
+    PrintMsg -msg "$($lang.Stop) $Minutes $($lang.Min)"
 
     # Take a break
     start-sleep -seconds $timeWait
