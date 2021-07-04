@@ -15,7 +15,7 @@
     Write-Host ("$($sharp)`n") -ForegroundColor $sharpColor -BackgroundColor $BackColor
 }
 
-$timeWait = 60
+$timeWait = 300
 $Minutes = $timeWait / 60
 $timeout = new-timespan -Minutes $Minutes
 $sw = [diagnostics.stopwatch]::StartNew()
