@@ -66,22 +66,22 @@ while ($sw.elapsed -lt $timeout)
     [System.IO.StreamReader]$sr = [System.IO.File]::Open("$fileLog", [System.IO.FileMode]::Open)
     while (-not $sr.EndOfStream)
     {
-       $line = $sr.ReadLine()
-       cd C:\Users\$env:UserName\AppData\Local\chia-blockchain\app-*.*.*\resources\app.asar.unpacked\daemon
-       .\chia.exe show -a "$line"
-       Start-Sleep -s 5
+        $line = $sr.ReadLine()
+        cd $env:localAPPDATA\Chia-Blockchain\app-*.*.*\resources\app.asar.unpacked\daemon\
+        .\chia.exe show -a "$line"
+        Start-Sleep -s 5
+
+        # supprime le fichier
+        $removeFile = Remove-Item "$fileLog"
+
+        # Title
+        PrintMsg -msg "$($lang.Stop) $timeWait $($lang.Min)"
+
+        # Take a break
+        start-sleep -seconds $timeWait
+
+        # Run script
+        ."$scriptDir\AddNewPeers.ps1"
     }
-    $sr.Close() 
-
-    # supprime le fichier
-    $removeFile = Remove-Item "$fileLog"
-
-    # Title
-    PrintMsg -msg "$($lang.Stop) $Minutes $($lang.Min)"
-
-    # Take a break
-    start-sleep -seconds $timeWait
-
-    # Run script
-    ."$scriptDir\AddNewPeers.ps1"
+    $sr.Close()
 }
