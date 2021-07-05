@@ -1,14 +1,17 @@
-﻿Function PrintMsg {
+Function PrintMsg {
     Param (
         [Parameter(Mandatory=$true)]   [String]$msg,
         [Parameter(Mandatory=$false)]  [String]$backColor = "black",
         [Parameter(Mandatory=$false)]  [String]$sharpColor = "Red",
         [Parameter(Mandatory=$false)]  [String]$textColor = "Green"
     )
+    
     # Condition
     $charCount = ($msg.Length + 2)
+
     # Count number of #
     for ($i = 1 ; $i -le $charCount ; $i++){$sharp += "#"}
+
     # Display message
     Write-Host ("`n$($sharp)") -ForegroundColor $sharpColor -BackgroundColor $BackColor
     Write-Host (" $($msg) ") -ForegroundColor $textColor -BackgroundColor $BackColor
@@ -16,17 +19,23 @@
 }
 # Search for the name of the script
 $scriptDir = Split-Path -parent $MyInvocation.MyCommand.Path
+
 # Unblock file
 Unblock-File -Path $scriptDir
+
 # Intenationalization import
 $lang = Import-LocalizedData -BaseDirectory "$scriptDir\Lang"
+
 # Take a break
 $timeWait = 600
+
 # Convert to minutes
 $Minutes = $timeWait / 60
+
 # Define $timeout
 $timeout = new-timespan -Minutes $Minutes
 $sw = [diagnostics.stopwatch]::StartNew()
+
 # Check if chia is launched
 if(!(Get-Process -NAME "chia" -erroraction "silentlycontinue"))
 {
