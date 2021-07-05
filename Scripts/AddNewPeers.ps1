@@ -58,7 +58,7 @@ while ($sw.elapsed -lt $timeout)
     while (-not $sr.EndOfStream)
     {
        $line = $sr.ReadLine()
-       cd C:\Users\$env:UserName\AppData\Local\chia-blockchain\app-1.1.7\resources\app.asar.unpacked\daemon
+       cd C:\Users\$env:UserName\AppData\Local\chia-blockchain\app-*.*.*\resources\app.asar.unpacked\daemon
        .\chia.exe show -a "$line"
        Start-Sleep -s 5
     }
