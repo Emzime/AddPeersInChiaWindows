@@ -1,3 +1,4 @@
 @echo off
-Cmd /C Powershell -file "Scripts\AddNewPeers.ps1"
+set currentpath=%~dp0
+Cmd /C Powershell -file "%currentpath%Scripts\AddNewPeers.ps1"
 pause
