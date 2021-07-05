@@ -14,16 +14,19 @@
     Write-Host (" $($msg) ") -ForegroundColor $textColor -BackgroundColor $BackColor
     Write-Host ("$($sharp)`n") -ForegroundColor $sharpColor -BackgroundColor $BackColor
 }
-
-$timeWait = 600
-$Minutes = $timeWait / 60
-$timeout = new-timespan -Minutes $Minutes
-$sw = [diagnostics.stopwatch]::StartNew()
 # Search for the name of the script
 $scriptDir = Split-Path -parent $MyInvocation.MyCommand.Path
+# Unblock file
+Unblock-File -Path $scriptDir
 # Intenationalization import
 $lang = Import-LocalizedData -BaseDirectory "$scriptDir\Lang"
-
+# Take a break
+$timeWait = 600
+# Convert to minutes
+$Minutes = $timeWait / 60
+# Define $timeout
+$timeout = new-timespan -Minutes $Minutes
+$sw = [diagnostics.stopwatch]::StartNew()
 # Check if chia is launched
 if(!(Get-Process -NAME "chia" -erroraction "silentlycontinue"))
 {

@@ -1,4 +1,6 @@
-﻿# Get policy
+﻿$scriptDir = Split-Path -parent $MyInvocation.MyCommand.Path
+Unblock-File -Path $scriptDir
+# Get policy
 $GetExecutionPolicy = Get-ExecutionPolicy
 $checkExecutionPolicy = "Unrestricted"
 
