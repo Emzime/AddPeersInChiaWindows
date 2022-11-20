@@ -67,8 +67,8 @@ while ($sw.elapsed -lt $timeout)
     while (-not $sr.EndOfStream)
     {
         $line = $sr.ReadLine()
-        cd $env:localAPPDATA\Chia-Blockchain\app-*.*.*\resources\app.asar.unpacked\daemon\
-        .\chia.exe show -a "$line"
+        cd $env:localAPPDATA\Programs\Chia\resources\app.asar.unpacked\daemon\
+        .\chia.exe peer full_node -a "$line"
         Start-Sleep -s 5
     }
     $sr.Close()
